@@ -1,3 +1,4 @@
+// objects to call depending on till status
 const REGISTER_STATUS = {
   closed: "CLOSED",
   insufficientFunds: "INSUFFICIENT_FUNDS",
@@ -5,7 +6,8 @@ const REGISTER_STATUS = {
 }
 
 
-
+// first function:
+// this checks the status of the register that is returned at the end
 function checkCashRegister(price, cash, cid) {
 
   let cashRegister = {status: '', change: cid}
@@ -37,7 +39,9 @@ cashRegister.status = getTotalCashRegisterStatus(changeNeeded,changeAvailable);
 }
 
 
-
+// 2ns function
+// has the object containing money values
+// uses a for loop to go through the change in the drawer
 function getCustomersChange(changeNeeded,changeInDrawer){
   const change = [];
   const currencyDictionary = {
@@ -71,8 +75,11 @@ function getCustomersChange(changeNeeded,changeInDrawer){
   }
   return change;
 }
-
-
+// 3rd function
+// for the status mentioned at the start
+// 3 cases: insufficient funds if change needed is more than available
+// open if change needed is less than available
+// otherwise register is closed.
 function getTotalCashRegisterStatus(changeNeeded,changeAvailable){
 
     if(Number(changeNeeded) > Number(changeAvailable)){
@@ -85,7 +92,8 @@ function getTotalCashRegisterStatus(changeNeeded,changeAvailable){
   }
 
 
-
+// 4th function,
+// gets the total amount in the register
 function getTotalCashRegisterChange(changeInDrawer){
   let total = 0;
   for (let change of changeInDrawer){
